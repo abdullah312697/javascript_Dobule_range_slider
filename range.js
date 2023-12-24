@@ -78,16 +78,18 @@ const setClietRect = (e) => {
         currentStepRight = maxValue;
     }
     let processStoping = (currentStepRight - currentStepLeft);
-    
-    function leftRangCalculation(selector){
-        let trey;
-        if(leftPosition <= rangeSelectorWidth){
+        
+    if(leftPosition <= rangeSelectorWidth){
             leftPosition = rangeSelectorWidth;
-        }else if(leftPosition >= rightSpecificPosition){
-            leftPosition = rightSpecificPosition;
         }else if(leftPosition >= maxInnerValue){
             leftPosition = maxInnerValue;
-        }    
+        }
+        
+    function leftRangCalculation(selector){
+        let trey;
+        if(leftPosition >= rightSpecificPosition){
+            leftPosition = rightSpecificPosition;
+        }  
         if(selector === "left" && leftSpecificPosition < leftPosition){
             trey = Math.floor((leftSpecificPosition - rangeSelectorWidth) / rangeSteper); 
         }else{
@@ -105,12 +107,9 @@ const setClietRect = (e) => {
     
     function rightRangCalculation(selector){
         let trey;
-         if(leftPosition <= rangeSelectorWidth){
-            leftPosition = rangeSelectorWidth;
-        }else if(leftPosition <= leftSpecificPosition){
+
+        if(leftPosition <= leftSpecificPosition){
             leftPosition = leftSpecificPosition;
-        }else if(leftPosition >= maxInnerValue){
-            leftPosition = maxInnerValue;
         }
         if(selector === "right" && rightSpecificPosition >  leftPosition){
             trey = Math.floor((rightSpecificPosition  - rangeSelectorWidth) / rangeSteper);

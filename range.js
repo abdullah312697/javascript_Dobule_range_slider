@@ -187,14 +187,20 @@ const rangeSelector = (e) => {
     rangeParent.addEventListener("pointermove",rangeControler)
     rangeContainer.addEventListener("pointermove",rangerPrntPositin)
     process = true;
-    window.addEventListener("pointerup",rangeUnselect)
+    if(rangeParent && rangeContainer){
+        window.addEventListener("pointerup",rangeUnselect)
+    }
+    
 }
 
 const rangeUnselect = (e) => {
     const rangeParent = document.querySelector(".offsetDiv");
-    rangeParent.removeEventListener("pointermove",rangeControler)
     const rangeContainer = document.querySelector(".range_pr");
-    rangeContainer.removeEventListener("pointermove",rangerPrntPositin)
+    if(rangeParent && rangeContainer){
+        rangeParent.removeEventListener("pointermove",rangeControler);
+        rangeContainer.removeEventListener("pointermove",rangerPrntPositin);
+    }
+    
     process = false;
     currentDiv.style.zIndex = 0;     
     leftRangeProcess = false;
